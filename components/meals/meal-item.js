@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import Image from 'next/image'
-
 import classes from './meal-item.module.css'
+import Link from 'next/link'
 
-export default function MealItem({ title, slug, image, summary, creator }) {
+export default function MealItem({ meal }) {
+  const { image, title, creator, summary, slug } = meal
   return (
     <article className={classes.meal}>
       <header>
@@ -14,7 +14,6 @@ export default function MealItem({ title, slug, image, summary, creator }) {
             fill
             sizes="100vw"
           />
-          {/* todo fill позволят заполнить все возможное пространство родителя */}
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>

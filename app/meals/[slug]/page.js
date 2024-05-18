@@ -1,7 +1,7 @@
-import { getMeal } from '@/lib/meals'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import cls from './page.module.css'
+import { getMeal } from '@/lib/meals'
+import Image from 'next/image'
 
 export async function generateMetadata({ params }) {
   const meal = getMeal(params.mealSlug)
@@ -13,10 +13,10 @@ export async function generateMetadata({ params }) {
   return { title: meal.title, description: meal.summary }
 }
 
-export default function MealDetailsPage({ params }) {
-  const meal = getMeal(params.slug)
-
+export default async function MealDetailsPage({ params }) {
+  const meal = await getMeal(params.slug)
   meal.instructions = meal.instructions.replace(/\n/g, '<br />')
+
   return (
     <>
       <header className={cls.header}>
